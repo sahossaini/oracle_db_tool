@@ -1,0 +1,12 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar"
+        ],
+        "exclude": [
+            "d:\\Anan\\My_Projects\\java oracle db test tool\\json-simple-1.1.1.jar"
+        ]
+    }
+}

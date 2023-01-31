@@ -1,0 +1,3 @@
+---need to properly organize exceptions
+---all tasks should be able to get inside another task!!!!
+    eg. read_from_file does not accept task!!!

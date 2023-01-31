@@ -1,0 +1,11 @@
+{
+	"db1": {
+		"connection_string": "jdbc:oracle:thin:@//192.168.200.119:1521/orcl",
+		"user_name": "sys as sysdba",
+        "password": "samiul"
+	},
+	"db1f": {
+		"conn": "sdfsd",
+		"sdfsd": "sdf"
+	}
+}
