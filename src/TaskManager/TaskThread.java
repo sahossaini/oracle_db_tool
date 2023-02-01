@@ -2,6 +2,9 @@ package TaskManager;
 
 import java.util.*;
 import TaskManager.Objects.*;
+import TaskManager.Objects.GlobalCacheNode.GlobalCacheType;
+import TaskManager.Objects.ReturnCacheNode.ReturnCacheType;
+import TaskManager.Objects.TaskChildNode.TaskChildType;
 import Utilities.Utils;
 
 public class TaskThread extends Thread {
@@ -15,7 +18,7 @@ public class TaskThread extends Thread {
         this.return_cache = new ReturnCacheNode();
     }
 
-    void setReturn (String task_id, String value_type, String value) {
+    void setReturn (String task_id, ReturnCacheType value_type, String value) {
         return_cache = new ReturnCacheNode();
         return_cache.task_id = task_id;
         return_cache.type = value_type;
@@ -113,7 +116,7 @@ public class TaskThread extends Thread {
         try {
             String content = Utils.readFile(file_location);
             System.out.println("reached!!");
-            setReturn(task_id, "string", content);
+            setReturn(task_id, ReturnCacheType.STRING, content);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -126,25 +129,25 @@ public class TaskThread extends Thread {
 
     void set_return (String task_id) {
         String value = TaskTreeHelper.getChildAt(t, task_id, 0).name;
-        setReturn(task_id, "string", value);
+        setReturn(task_id, ReturnCacheType.STRING, value);
     }
 
     void set_cache (String task_id) {
         String var_name = TaskTreeHelper.getChildAt(t, task_id, 0).name;
         String var_value = TaskTreeHelper.getChildAt(t, task_id, 1).name;
-        GlobalCacheManager.addToCache(var_name, "string", var_value);
+        GlobalCacheManager.addToCache(var_name, GlobalCacheType.STRING, var_value);
         GlobalCacheManager.printCache();
     }
 
     void print (String task_id) {
         TaskChildNode child = TaskTreeHelper.getChildAt(t, task_id, 0);
 
-        if (child.type.equals("func")) {
+        if (child.type == TaskChildType.TASK) {
             execute(child.child_id);
             if (child.child_id.equals(checkReturn()))
                 System.out.println(">>" + getReturn().value);
         }
-        else if (child.type.equals("var")) {
+        else if (child.type == TaskChildType.VARIABLE) {
             GlobalCacheNode gcn = GlobalCacheManager.getFromCache(child.name);
             if (gcn == null) {
                 System.out.println(child.name);

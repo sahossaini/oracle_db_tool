@@ -3,6 +3,7 @@ package TaskManager;
 import java.util.*;
 
 import TaskManager.Objects.GlobalCacheNode;
+import TaskManager.Objects.GlobalCacheNode.GlobalCacheType;
 
 public class GlobalCacheManager {
     public static List<GlobalCacheNode> cache; // name, type, value
@@ -28,7 +29,7 @@ public class GlobalCacheManager {
         return null;
     }
 
-    public static void addToCache (String name, String type, String value) {
+    public static void addToCache (String name, GlobalCacheType type, String value) {
         int idx = getIdx(name);
         if (idx != -1) {
             updateCache (name, value);

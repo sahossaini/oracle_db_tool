@@ -3,18 +3,24 @@ run_parallel (
     , run_serial (
         run_serial (print(read_from_file("bugs_notes.txt")))
         , print("bbbd")
+        #####v ommece
         , run_serial (print("vsdf"))
         , print(set_return("Yorolo"))
         , run_parallel (
             run_parallel (
+#comment
                 run_parallel (
                     run_parallel (
+                        #  
                         print("bbbd")
                     )
                     , print("bbbd")
                 )
             )
-            , run_serial ()
+            ###
+           # 
+            ### sdfsd
+ ###           , run_serial ()
         )
         , run_serial ()
     )

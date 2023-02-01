@@ -1,7 +1,10 @@
 package TaskManager.Objects;
 
 public class TaskChildNode {
-    public String child_id;     // id of task / variable
-    public String type;         // var / func
-    public String name;         // task / variable name 
+    public enum TaskChildType {
+        VARIABLE, TASK
+    }
+    public String child_id;             // id of task / variable
+    public TaskChildType type;          // var / func
+    public String name;                 // task / variable name 
 }

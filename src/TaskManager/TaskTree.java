@@ -4,6 +4,8 @@ import java.util.*;
 
 import TaskManager.Objects.TaskChildNode;
 import TaskManager.Objects.TaskNode;
+import TaskManager.Objects.TaskChildNode.TaskChildType;
+import TaskManager.Objects.TaskNode.TaskNodeStatus;
 
 public class TaskTree {
     public TaskNode parent;
@@ -93,9 +95,10 @@ public class TaskTree {
 
                 for (String a : tmp_children) {
                     TaskChildNode child = new TaskChildNode();
-                    String child_name = "", child_type = "";
+                    String child_name = ""; 
+                    TaskChildType child_type = null;
                     if (a.charAt(0) == 'v') {
-                        child_type = "var";
+                        child_type = TaskChildType.VARIABLE;
                         a = a.substring(1, a.length() - 1);
                         for (ArrayList<String> z : variables) {
                             if (z.get(0).equals(a)) {
@@ -105,7 +108,7 @@ public class TaskTree {
                         }
                     }
                     else if (a.charAt(0) == 'f') {
-                        child_type = "func";
+                        child_type = TaskChildType.TASK;
                         a = a.substring(1, a.length() - 1);
                         for (ArrayList<String> z : functions) {
                             if (z.get(0).equals(a)) {
@@ -120,7 +123,7 @@ public class TaskTree {
                     children.add(child);
                 }
                 t.children = children;
-                t.task_status = "notstarted";
+                t.task_status = TaskNodeStatus.NOT_STARTED;
                 
                 task_tree.add(t);
                 if (sb > fb) {

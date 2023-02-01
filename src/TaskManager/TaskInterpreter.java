@@ -10,6 +10,30 @@ public class TaskInterpreter {
     static ArrayList<ArrayList<String>> functions;
 
     public static ArrayList<TaskNode> interpret (String task_text) throws Exception {
+        // remove all comments - (any line starting with # is a comment)
+        String[]lines = task_text.split(System.getProperty("line.separator"));
+        String comment_less_task = "";
+        boolean is_line_comment = false;
+        for(String line : lines){
+            is_line_comment = false;
+            for (int i = 0; i < line.length(); i++) {
+                if (line.charAt(i) == '#') {
+                    is_line_comment = true;
+                    break;
+                }
+                else if (line.charAt(i) != ' ') {
+                    is_line_comment = false;
+                    break;
+                }
+            }
+            if (!is_line_comment) {
+                comment_less_task = comment_less_task + line + '\n';
+            } 
+        }
+
+        task_text = comment_less_task;
+        System.out.println(task_text);
+
         // replace all enters with spaces
         task_text = task_text.replaceAll("\\r?\\n", " ");
 

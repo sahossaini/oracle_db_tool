@@ -35,7 +35,7 @@ public class App {
 
         ArrayList<TaskNode> task_tree = new ArrayList<TaskNode>();
         try {
-            task_tree = TaskInterpreter.interpret(Utils.readFile("pgm.txt"));
+            task_tree = TaskInterpreter.interpret(Utils.readFile("pgm2.txt"));
         }
         catch (Exception e) {
             System.out.println("PARSING ERROR !!");
