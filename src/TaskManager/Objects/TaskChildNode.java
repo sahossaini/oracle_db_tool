@@ -1,10 +1,9 @@
 package TaskManager.Objects;
 
+import TaskManager.Objects.Enums.TokenType;
+
 public class TaskChildNode {
-    public enum TaskChildType {
-        VARIABLE, TASK
-    }
     public String child_id;             // id of task / variable
-    public TaskChildType type;          // var / func
+    public TokenType type;       // var / task
     public String name;                 // task / variable name 
 }

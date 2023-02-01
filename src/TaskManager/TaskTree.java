@@ -4,8 +4,7 @@ import java.util.*;
 
 import TaskManager.Objects.TaskChildNode;
 import TaskManager.Objects.TaskNode;
-import TaskManager.Objects.TaskChildNode.TaskChildType;
-import TaskManager.Objects.TaskNode.TaskNodeStatus;
+import TaskManager.Objects.Enums.*;
 
 public class TaskTree {
     public TaskNode parent;
@@ -96,9 +95,9 @@ public class TaskTree {
                 for (String a : tmp_children) {
                     TaskChildNode child = new TaskChildNode();
                     String child_name = ""; 
-                    TaskChildType child_type = null;
+                    TokenType child_type = null;
                     if (a.charAt(0) == 'v') {
-                        child_type = TaskChildType.VARIABLE;
+                        child_type = TokenType.VARIABLE;
                         a = a.substring(1, a.length() - 1);
                         for (ArrayList<String> z : variables) {
                             if (z.get(0).equals(a)) {
@@ -108,7 +107,7 @@ public class TaskTree {
                         }
                     }
                     else if (a.charAt(0) == 'f') {
-                        child_type = TaskChildType.TASK;
+                        child_type = TokenType.TASK;
                         a = a.substring(1, a.length() - 1);
                         for (ArrayList<String> z : functions) {
                             if (z.get(0).equals(a)) {

@@ -2,10 +2,9 @@ package TaskManager.Objects;
 
 import java.util.ArrayList;
 
-public class TaskNode {    
-    public enum TaskNodeStatus {
-        NOT_STARTED, RUNNING, PAUSED, ENDED
-    }
+import TaskManager.Objects.Enums.TaskNodeStatus;
+
+public class TaskNode {
     public String task_id;
     public String task_name;
     public String child_text;

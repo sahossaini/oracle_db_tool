@@ -31,4 +31,12 @@ public class Utils {
 		}
 		return null;
 	}
+
+	public static int tryParseInt(String text, int default_int) {
+        try {
+            return Integer.parseInt(text.replaceAll("\\D+", ""));
+        } catch (NumberFormatException e) {
+            return default_int;
+        }
+    }
 }

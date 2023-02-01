@@ -1,10 +1,9 @@
 package TaskManager.Objects;
 
+import TaskManager.Objects.Enums.ValueType;
+
 public class GlobalCacheNode {
-    public enum GlobalCacheType {
-        STRING, NUMBER
-    }
     public String name;
-    public GlobalCacheType type;
+    public ValueType type;
     public String value;
 }
