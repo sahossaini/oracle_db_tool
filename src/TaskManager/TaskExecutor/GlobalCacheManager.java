@@ -1,4 +1,4 @@
-package TaskManager.Executor;
+package TaskManager.TaskExecutor;
 
 import java.util.*;
 
@@ -13,7 +13,7 @@ public class GlobalCacheManager {
     }
 
     public static int getIdx (String name) {
-        // printCache();
+        // printGlobalCache();
         for (int i = 0; i < cache.size(); i++) {
             if (cache.get(i).variable_name.equals(name)) {
                 return i;
@@ -63,7 +63,7 @@ public class GlobalCacheManager {
             cache.remove(idx);
     }
 
-    public static void printCache () {
+    public static void printGlobalCache () {
         System.out.println("Total cached : " + cache.size());
         for (ObjectNode row : cache) {
             System.out.println("  name : " + row.variable_name);

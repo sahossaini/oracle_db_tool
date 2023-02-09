@@ -5,11 +5,11 @@ import java.util.*;
 import ConnManager.*;
 import DataSource.Excel.ExcelManager;
 import TaskManager.*;
-import TaskManager.Executor.GlobalCacheManager;
-import TaskManager.Executor.TaskThread;
 import TaskManager.Objects.TaskNode;
 import TaskManager.Parser.TaskInterpreter;
 import TaskManager.Parser.TaskTreeHelper;
+import TaskManager.TaskExecutor.GlobalCacheManager;
+import TaskManager.TaskExecutor.TaskManagerThread;
 import Utilities.Utils;
 
 public class App {
@@ -49,7 +49,7 @@ public class App {
         String root_task_id = TaskTreeHelper.getRootTaskId(task_tree);
         // System.out.println(TaskTreeHelper.getTaskName(task_tree, root_task_id));
 
-        TaskThread x = new TaskThread(root_task_id, task_tree);
+        TaskManagerThread x = new TaskManagerThread(root_task_id, task_tree);
 
         x.start();
     }

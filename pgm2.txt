@@ -5,8 +5,9 @@ run_serial(
         "test_var"
     ),
     set_var (
-        read_from_file ("pgm.txt"), 
+        "read_from_file",
         "test_var"
     ),
-    print (get_var("test_var"))
+    run_parallel (
+    print (get_var("test_var")))
 )
