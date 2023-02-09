@@ -5,15 +5,8 @@ run_serial(
         "test_var"
     ),
     set_var (
-        "this isbb the value", 
-        "test_var",
-        "refresh"
-    ),
-    set_var (
-        read_from_file (
-            "pgm.txt"
-        ),
+        read_from_file ("pgm.txt"), 
         "test_var"
     ),
-    print ("test_var")
+    print (get_var("test_var"))
 )

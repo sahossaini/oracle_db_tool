@@ -2,7 +2,7 @@ package TaskManager.Objects;
 
 public class Enums {
     public enum ValueType {
-        VOID, STRING, NUMBER, TABLE
+        VOID, STRING, NUMBER, TABLE, EXCEL
     }
         
     public enum TaskNodeStatus {
