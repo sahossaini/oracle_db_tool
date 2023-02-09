@@ -3,8 +3,13 @@ import Helpers.*;
 import java.util.*;
 
 import ConnManager.*;
+import DataSource.Excel.ExcelManager;
 import TaskManager.*;
+import TaskManager.Executor.GlobalCacheManager;
+import TaskManager.Executor.TaskThread;
 import TaskManager.Objects.TaskNode;
+import TaskManager.Parser.TaskInterpreter;
+import TaskManager.Parser.TaskTreeHelper;
 import Utilities.Utils;
 
 public class App {
@@ -40,7 +45,7 @@ public class App {
         catch (Exception e) {
             System.out.println("PARSING ERROR !!");
         }
-
+        
         String root_task_id = TaskTreeHelper.getRootTaskId(task_tree);
         // System.out.println(TaskTreeHelper.getTaskName(task_tree, root_task_id));
 
@@ -49,9 +54,15 @@ public class App {
         x.start();
     }
 
+    public static void excelTest () throws Exception {
+        ExcelManager x = new ExcelManager();
+        x.readExcel("test_sheet.xls");
+    }
+
     public static void main (String args[]) {
-        try {
+        try {            
             runApp ();
+            // excelTest();
         }
         catch (Exception e) {
             e.printStackTrace();

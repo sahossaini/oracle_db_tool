@@ -1,9 +1,11 @@
-package TaskManager;
+package TaskManager.Parser;
 
 import java.util.*;
 
 import TaskManager.Objects.TaskChildNode;
 import TaskManager.Objects.TaskNode;
+import TaskManager.Objects.Enums.TokenType;
+import javafx.concurrent.Task;
 
 /**
  * TaskTreeHelper
@@ -32,7 +34,7 @@ public class TaskTreeHelper {
         for (TaskNode n : task_tree) {
             if (n.task_id.equals(task_id)) {
                 for (TaskChildNode t : n.children) {
-                    if (t.type.equals("func")) {
+                    if (t.type == TokenType.TASK) {
                         child_task_ids.add(t.child_id);
                     }
                 }
@@ -46,7 +48,7 @@ public class TaskTreeHelper {
         for (TaskNode n : task_tree) {
             if (n.task_id.equals(task_id)) {
                 for (TaskChildNode t : n.children) {
-                    if (t.type.equals("func")) {
+                    if (t.type == TokenType.TASK) {
                         cnt++;
                     }
                 }
@@ -60,7 +62,7 @@ public class TaskTreeHelper {
         for (TaskNode n : task_tree) {
             if (n.task_id.equals(task_id)) {
                 for (TaskChildNode t : n.children) {
-                    if (t.type.equals("var")) {
+                    if (t.type == TokenType.VARIABLE) {
                         child_var_ids.add(t.child_id);
                     }
                 }
@@ -74,7 +76,7 @@ public class TaskTreeHelper {
         for (TaskNode n : task_tree) {
             if (n.task_id.equals(task_id)) {
                 for (TaskChildNode t : n.children) {
-                    if (t.type.equals("var")) {
+                    if (t.type == TokenType.VARIABLE) {
                         cnt++;
                     }
                 }
@@ -135,6 +137,23 @@ public class TaskTreeHelper {
                 System.out.println("     " + "id: " + x.child_id + "  type: " + x.type + "  name: " + x.name);
             }
             System.out.println("--------------");
+        }
+    }
+
+    public static void printTask (ArrayList<TaskNode> task_tree, String task_id) {
+        for (TaskNode n : task_tree) {
+            if (n.task_id.equals(task_id)) {
+                System.out.println("task_id : " + n.task_id);
+                System.out.println("task_name : " + n.task_name);
+                System.out.println("task_status : " + n.task_status);
+                System.out.println("parent_task_id : " + n.parent_task_id);
+                System.out.println("parent_task_name : " + n.parent_task_name);
+                System.out.println("child_text : " + n.child_text);
+                for (TaskChildNode x : n.children) {
+                    System.out.println("     " + "id: " + x.child_id + "  type: " + x.type + "  name: " + x.name);
+                }
+                System.out.println("--------------");
+            }
         }
     }
 }

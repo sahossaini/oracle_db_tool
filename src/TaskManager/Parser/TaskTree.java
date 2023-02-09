@@ -1,4 +1,4 @@
-package TaskManager;
+package TaskManager.Parser;
 
 import java.util.*;
 

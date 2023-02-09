@@ -2,7 +2,7 @@ package TaskManager.Objects;
 
 public class Enums {
     public enum ValueType {
-        VOID, STRING, NUMBER
+        VOID, STRING, NUMBER, TABLE
     }
         
     public enum TaskNodeStatus {
@@ -14,26 +14,137 @@ public class Enums {
     }
 
     public enum TaskName {
-        READ_FROM_FILE("READ_FROM_FILE"),
-        SAVE_TO_FILE("SAVE_TO_FILE"),
-        SAVE_TO_VARIABLE("SAVE_TO_VARIABLE"),
-        SET_RETURN("SET_RETURN"),
-        SET_CACHE("SET_CACHE"),
-        PRINT("PRINT"),
-        PAUSE("PAUSE"),
-        RUN_SERIAL("RUN_SERIAL"),
-        RUN_SERIAL_LOOP("RUN_SERIAL_LOOP"),
-        RUN_PARALLEL("RUN_PARALLEL"),
-        RUN_PARALLEL_CONTINUE("RUN_PARALLEL_CONTINUE");
+        CONNECT_ORACLE_DB(
+            new TaskProperty("CONNECT_ORACLE_DB", 
+                            ValueType.STRING, 
+                            1, 
+                            new TokenType[] {
+                                TokenType.VARIABLE
+                            }
+                )
+        ),
+        READ_FROM_FILE(
+            new TaskProperty("READ_FROM_FILE", 
+                            ValueType.STRING, 
+                            1, 
+                            new TokenType[] {
+                                TokenType.VARIABLE
+                            }
+                )
+        ),
+        SAVE_TO_FILE(
+            new TaskProperty("SAVE_TO_FILE", 
+                            ValueType.STRING, 
+                            2, 
+                            new TokenType[] {
+                                TokenType.VARIABLE,
+                                TokenType.VARIABLE
+                            }
+                )
+        ),
+        SET_VAR(
+            new TaskProperty("SET_VAR", 
+                            ValueType.STRING, 
+                            2, 
+                            new TokenType[] {
+                                TokenType.VARIABLE,
+                                TokenType.VARIABLE
+                            }
+                )
+        ),
+        GET_VAR(
+            new TaskProperty("GET_VAR", 
+                            ValueType.STRING, 
+                            1, 
+                            new TokenType[] {
+                                TokenType.VARIABLE
+                            }
+                )
+        ),
+        SET_RETURN(
+            new TaskProperty("SET_RETURN", 
+                            ValueType.STRING, 
+                            2, 
+                            new TokenType[] {
+                                TokenType.VARIABLE,
+                                TokenType.VARIABLE
+                            }
+                )
+        ),
+        SET_CACHE(
+            new TaskProperty("SET_CACHE", 
+                            ValueType.STRING, 
+                            2, 
+                            new TokenType[] {
+                                TokenType.VARIABLE,
+                                TokenType.VARIABLE
+                            }
+                )
+        ),
+        PRINT(
+            new TaskProperty("PRINT", 
+                            ValueType.VOID, 
+                            1, 
+                            new TokenType[] {
+                                TokenType.VARIABLE
+                            }
+                )
+        ),
+        PAUSE(
+            new TaskProperty("PAUSE", 
+                            ValueType.STRING, 
+                            1, 
+                            new TokenType[] {
+                                TokenType.VARIABLE
+                            }
+                )
+        ),
+        RUN_SERIAL(
+            new TaskProperty("RUN_SERIAL", 
+                            ValueType.STRING, 
+                            -1, 
+                            new TokenType[] {
+                                TokenType.TASK
+                            }
+                )
+        ),
+        RUN_SERIAL_LOOP(
+            new TaskProperty("RUN_SERIAL_LOOP", 
+                            ValueType.STRING, 
+                            -1, 
+                            new TokenType[] {
+                                TokenType.TASK
+                            }
+                )
+        ),
+        RUN_PARALLEL(
+            new TaskProperty("RUN_PARALLEL", 
+                            ValueType.STRING, 
+                            -1, 
+                            new TokenType[] {
+                                TokenType.TASK
+                            }
+                )
+        ),
+        RUN_PARALLEL_CONTINUE(
+            new TaskProperty("RUN_PARALLEL_CONTINUE", 
+                            ValueType.STRING, 
+                            -1, 
+                            new TokenType[] {
+                                TokenType.TASK
+                            }
+                )
+        );
 
-        String name;
-        TaskName (String name) {
-            this.name = name;
+        public TaskProperty task_property;
+
+        TaskName (TaskProperty task_Property) {
+            this.task_property = task_Property;
         }
 
         @Override
         public final String toString(){
-            return name.toUpperCase().trim();
+            return task_property.task_name.toUpperCase().trim();
         }
     }
 }

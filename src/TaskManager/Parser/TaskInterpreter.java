@@ -1,8 +1,9 @@
-package TaskManager;
+package TaskManager.Parser;
 import Helpers.Misc;
 import TaskManager.Objects.TaskNode;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class TaskInterpreter {
@@ -32,7 +33,6 @@ public class TaskInterpreter {
         }
 
         task_text = comment_less_task;
-        System.out.println(task_text);
 
         // replace all enters with spaces
         task_text = task_text.replaceAll("\\r?\\n", " ");
@@ -64,7 +64,7 @@ public class TaskInterpreter {
             }
             String var_id, variable;
             while (true) {
-                var_id = Misc.getRandomString(10);
+                var_id = getRandomString(10);
                 if (!task_text.contains(var_id)) {
                     break;
                 }
@@ -189,7 +189,7 @@ public class TaskInterpreter {
             if (func_found) {
                 String func_id;
                 while (true) {
-                    func_id = Misc.getRandomString(10);
+                    func_id = getRandomString(10);
                     if (!task_text.contains(func_id)) {
                         break;
                     }
@@ -341,8 +341,6 @@ public class TaskInterpreter {
 
         TaskTree t = new TaskTree();
         t.makeTree(task_text, variables, functions);
-        // t.printTaskTree();
-        TaskTreeHelper.printTaskTree(t.task_tree);
 
         return t.task_tree;
     }
@@ -373,4 +371,18 @@ public class TaskInterpreter {
         }
         return false;
     }
+
+    static String getRandomString (int length) {
+		int leftLimit = 97; 	// letter 'a'
+		int rightLimit = 122; 	// letter 'z'
+		int targetStringLength = length;
+		Random random = new Random();
+		StringBuilder buffer = new StringBuilder(targetStringLength);
+		for (int i = 0; i < targetStringLength; i++) {
+			int randomLimitedInt = leftLimit + (int) 
+			(random.nextFloat() * (rightLimit - leftLimit + 1));
+			buffer.append((char) randomLimitedInt);
+		}
+		return buffer.toString();
+	}
 }

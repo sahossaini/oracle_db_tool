@@ -1,15 +1,59 @@
-[db1  <>  start_loop<>  task<delaysdf> ]
-[vvvvasd
-a#sdf
-        dsfgdf
-        g       sdfsdf
-sdf ]
-[sdfsdf]
-[avavvv
-vvvvasd#commeingis
-]
-[#vsvsv
-        sdfsdfs
-        ds###fg#df      
-        sdf         werwer
-]asfdsdf
+#--set output something
+#--set another thing on
+#--something else 
+run_serial (
+        ### connect to dbs
+        run_parallel (
+                save_to_var (
+                        oracle_connect ("bddb10")
+                        , "conn-bddb10"
+                ),
+                save_to_var (
+                        oracle_connect ("bddb12")
+                        , "conn-bddb12"
+                ),
+                save_to_var (
+                        oracle_connect ("bddb13")
+                        , "conn-bddb13"
+                )
+        ),
+        ### fetch results to excels 
+        run_serial (
+                save_to_var(
+                        read_from_file("file_name.sql")
+                        , "the_sql"
+                )
+                , run_parallel (
+                        write_to_excel(
+                                execute_sql ("conn-bddb13", "the_sql")
+                                , "output-from-bddb13.xlsx"
+                        )
+                        , write_to_excel(
+                                execute_sql ("conn-bddb10", "the_sql")
+                                , "output-from-bddb10.xlsx"
+                        )
+                )
+        ),
+        ### compare results
+        run_serial (
+                run_parallel (
+                        cast_excel_to_table (
+                                read_from_excel("output-from-bddb13.xlsx")
+                                , "tbl1"
+                        ),
+                        cast_excel_to_table (
+                                read_from_excel("output-from-bddb10.xlsx")
+                                , "tbl2"
+                        )
+                ),
+                save_to_var (
+                        execute_virtual_sql (
+                                "select *
+                                        from tbl1 t1
+                                        join tbl2 t2 on t1.id = t2.id"
+                        )
+                        , "result"
+                ),
+                print("result")
+        )
+)

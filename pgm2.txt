@@ -1,27 +1,19 @@
-run_parallel (
-    set_cache("bbbd", " GGUUU hhkfgkkfk  jk")
-    , run_serial (
-        run_serial (print(read_from_file("bugs_notes.txt")))
-        , print("bbbd")
-        #####v ommece
-        , run_serial (print("vsdf"))
-        , print(set_return("Yorolo"))
-        , run_parallel (
-            run_parallel (
-#comment
-                run_parallel (
-                    run_parallel (
-                        #  
-                        print("bbbd")
-                    )
-                    , print("bbbd")
-                )
-            )
-            ###
-           # 
-            ### sdfsd
- ###           , run_serial ()
-        )
-        , run_serial ()
-    )
+##RESOLVE double save bug!!!
+run_serial(
+    set_var (
+        "this is the value", 
+        "test_var"
+    ),
+    set_var (
+        "this isbb the value", 
+        "test_var",
+        "refresh"
+    ),
+    set_var (
+        read_from_file (
+            "pgm.txt"
+        ),
+        "test_var"
+    ),
+    print ("test_var")
 )

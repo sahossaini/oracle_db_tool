@@ -3,7 +3,8 @@ package TaskManager.Objects;
 import TaskManager.Objects.Enums.ValueType;
 
 public class GlobalCacheNode {
-    public String name;
+    public String variable_name;
+    public String task_id; 
     public ValueType type;
-    public String value;
+    public Object cached_object;
 }
