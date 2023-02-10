@@ -1,6 +1,6 @@
 package TaskManager.Objects;
 
-import TaskManager.Objects.Enums.ValueType;
+import TaskManager.TaskExecutor.TaskReference.TaskRefEnums.ValueType;
 
 public class ObjectNode {
     public String variable_name;            // the variable name of the var the object belongs to (eg. "x" = "some_text")

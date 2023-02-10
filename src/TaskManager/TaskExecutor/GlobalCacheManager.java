@@ -3,7 +3,7 @@ package TaskManager.TaskExecutor;
 import java.util.*;
 
 import TaskManager.Objects.ObjectNode;
-import TaskManager.Objects.Enums.ValueType;;
+import TaskManager.TaskExecutor.TaskReference.TaskRefEnums.ValueType;;
 
 public class GlobalCacheManager {
     public static List<ObjectNode> cache

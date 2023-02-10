@@ -6,7 +6,7 @@ import java.util.Random;
 import org.json.simple.*;
 import org.json.simple.parser.*;
 
-public class Utils {
+public class Various {
     public static String readFile(String file_name) throws Exception {
 		return new String(Files.readAllBytes(Paths.get(file_name)));
 	}

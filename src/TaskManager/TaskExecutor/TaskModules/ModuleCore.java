@@ -3,9 +3,9 @@ package TaskManager.TaskExecutor.TaskModules;
 import java.util.ArrayList;
 
 import TaskManager.Objects.ObjectNode;
-import TaskManager.Objects.Enums.ValueType;
 import TaskManager.TaskExecutor.GlobalCacheManager;
 import TaskManager.TaskExecutor.TaskManagerData;
+import TaskManager.TaskExecutor.TaskReference.TaskRefEnums.ValueType;
 
 public class ModuleCore {
     public TaskManagerData task_data;

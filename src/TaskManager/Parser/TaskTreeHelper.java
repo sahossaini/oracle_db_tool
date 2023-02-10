@@ -4,7 +4,7 @@ import java.util.*;
 
 import TaskManager.Objects.TaskChildNode;
 import TaskManager.Objects.TaskNode;
-import TaskManager.Objects.Enums.TokenType;
+import TaskManager.TaskExecutor.TaskReference.TaskRefEnums.TokenType;
 import javafx.concurrent.Task;
 
 /**
@@ -24,6 +24,15 @@ public class TaskTreeHelper {
         for (TaskNode n : task_tree) {
             if (n.task_id.equals(task_id)) {
                 return n.task_name;
+            }
+        }
+        return null;
+    }
+
+    public static TaskNode getTaskNode (ArrayList<TaskNode> task_tree, String task_id) {
+        for (TaskNode n : task_tree) {
+            if (n.task_id.equals(task_id)) {
+                return n;
             }
         }
         return null;
@@ -129,6 +138,7 @@ public class TaskTreeHelper {
         for (TaskNode n : task_tree) {
             System.out.println("task_id : " + n.task_id);
             System.out.println("task_name : " + n.task_name);
+            System.out.println("task_reference : " + n.task);
             System.out.println("task_status : " + n.task_status);
             System.out.println("parent_task_id : " + n.parent_task_id);
             System.out.println("parent_task_name : " + n.parent_task_name);

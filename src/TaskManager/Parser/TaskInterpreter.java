@@ -1,6 +1,6 @@
 package TaskManager.Parser;
-import Helpers.Misc;
 import TaskManager.Objects.TaskNode;
+import TaskManager.TaskExecutor.TaskReference.TaskValidator;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -342,6 +342,8 @@ public class TaskInterpreter {
         TaskTree t = new TaskTree();
         t.makeTree(task_text, variables, functions);
 
+        t.task_tree = TaskValidator.validateTaskTree(t.task_tree);
+        // TaskTreeHelper.printTaskTree(t.task_tree);
         return t.task_tree;
     }
 

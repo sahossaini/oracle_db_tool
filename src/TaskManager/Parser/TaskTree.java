@@ -4,7 +4,7 @@ import java.util.*;
 
 import TaskManager.Objects.TaskChildNode;
 import TaskManager.Objects.TaskNode;
-import TaskManager.Objects.Enums.*;
+import TaskManager.TaskExecutor.TaskReference.TaskRefEnums.*;
 
 public class TaskTree {
     public TaskNode parent;

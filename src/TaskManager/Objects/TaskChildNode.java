@@ -1,6 +1,6 @@
 package TaskManager.Objects;
 
-import TaskManager.Objects.Enums.TokenType;
+import TaskManager.TaskExecutor.TaskReference.TaskRefEnums.TokenType;
 
 public class TaskChildNode {
     public String child_id;             // id of task / variable

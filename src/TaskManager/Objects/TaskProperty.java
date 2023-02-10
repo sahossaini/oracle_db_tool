@@ -1,7 +1,7 @@
 package TaskManager.Objects;
 
-import TaskManager.Objects.Enums.TokenType;
-import TaskManager.Objects.Enums.ValueType;
+import TaskManager.TaskExecutor.TaskReference.TaskRefEnums.TokenType;
+import TaskManager.TaskExecutor.TaskReference.TaskRefEnums.ValueType;
 
 public class TaskProperty {
     public ValueType task_return_type;

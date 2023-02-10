@@ -3,7 +3,7 @@ package TaskManager.TaskExecutor;
 import java.util.ArrayList;
 
 import TaskManager.Objects.ObjectNode;
-import TaskManager.Objects.Enums.ValueType;
+import TaskManager.TaskExecutor.TaskReference.TaskRefEnums.ValueType;
 
 public class TaskManagerData {
     public String start_task_id;

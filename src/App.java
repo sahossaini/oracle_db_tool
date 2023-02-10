@@ -10,7 +10,7 @@ import TaskManager.Parser.TaskInterpreter;
 import TaskManager.Parser.TaskTreeHelper;
 import TaskManager.TaskExecutor.GlobalCacheManager;
 import TaskManager.TaskExecutor.TaskManagerThread;
-import Utilities.Utils;
+import Utilities.Various;
 
 public class App {
     static void runApp () throws Exception {
@@ -40,14 +40,14 @@ public class App {
 
         ArrayList<TaskNode> task_tree = new ArrayList<TaskNode>();
         try {
-            task_tree = TaskInterpreter.interpret(Utils.readFile("pgm2.txt"));
+            task_tree = TaskInterpreter.interpret(Various.readFile("pgm2.txt"));
         }
         catch (Exception e) {
-            System.out.println("PARSING ERROR !!");
+            System.out.println(e.getMessage());
         }
         
         String root_task_id = TaskTreeHelper.getRootTaskId(task_tree);
-        // System.out.println(TaskTreeHelper.getTaskName(task_tree, root_task_id));
+        System.out.println(TaskTreeHelper.getTaskName(task_tree, root_task_id));
 
         TaskManagerThread x = new TaskManagerThread(root_task_id, task_tree);
 

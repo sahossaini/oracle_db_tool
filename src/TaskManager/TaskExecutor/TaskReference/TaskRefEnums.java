@@ -1,10 +1,10 @@
-package TaskManager.Objects;
+package TaskManager.TaskExecutor.TaskReference;
 
-import java.util.ArrayList;
+import TaskManager.Objects.TaskProperty;
 
-public class Enums {
+public class TaskRefEnums {
     public enum ValueType {
-        VOID, STRING, NUMBER, TABLE, EXCEL
+        VOID, ANY, TASK, STRING, DATE, NUMBER, BOOL, TABLE, EXCEL
     }
         
     public enum TaskNodeStatus {
@@ -15,7 +15,7 @@ public class Enums {
         VARIABLE, TASK
     }
 
-    public enum TaskProperties {
+    public enum TaskReference {
         CONNECT_ORACLE_DB("CONNECT_ORACLE_DB",
             new TaskProperty[] {
                 new TaskProperty(ValueType.STRING, 1, new TokenType[] {TokenType.VARIABLE})
@@ -76,7 +76,7 @@ public class Enums {
         String task_name;
         public TaskProperty[] task_properties;
 
-        TaskProperties (String task_name, TaskProperty[] task_properties) {
+        TaskReference (String task_name, TaskProperty[] task_properties) {
             this.task_name = task_name;
             this.task_properties = task_properties;
         }
@@ -84,6 +84,15 @@ public class Enums {
         @Override
         public final String toString(){
             return task_name.toUpperCase().trim();
+        }
+
+        public static TaskReference getTaskReference (String task_name) {
+            for (TaskReference ref : TaskReference.values()) {
+                if (ref.toString().equals(task_name.toUpperCase().trim())) {
+                    return ref;
+                }
+            }
+            return null;
         }
     }
 }

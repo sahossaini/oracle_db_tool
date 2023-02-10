@@ -1,0 +1,25 @@
+---need to properly organize exceptions
+---all tasks should be able to get inside another task!!!!
+    eg. read_from_file does not accept task!!!
+
+---implement comment- a comment should start with # at start of sentence
+---3 sources of parameter -
+    1. from another task
+    2. its a global variable 
+    3. its a value 
+
+
+10-feb-2023
+First try to implement Oracle db functions, eg.
+    fetching data to local table, formatting and managing etc.
+Then work on core functionality like run_serial_loop
+
+How run_serial_loop might work -
+    run_serial_loop (
+        task, task, task, some_condition_task(a, b)
+    )
+
+the some_condition_task fuction should return true / false based on which 
+loop will run or stop 
+
+Then, work on core arithmetic and string manipulation functionalities

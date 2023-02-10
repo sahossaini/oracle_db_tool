@@ -3,10 +3,10 @@ package TaskManager.TaskExecutor;
 import java.util.*;
 
 import TaskManager.Objects.*;
-import TaskManager.Objects.Enums.*;
 import TaskManager.Parser.TaskTreeHelper;
 import TaskManager.TaskExecutor.TaskModules.ModuleCore;
-import Utilities.Utils;
+import TaskManager.TaskExecutor.TaskReference.TaskRefEnums.*;
+import Utilities.Various;
 
 public class TaskManagerThread extends Thread {
     static ArrayList<TaskNode> t; // task_tree
@@ -40,17 +40,8 @@ public class TaskManagerThread extends Thread {
 
     void execute (String task_id) {
         task_data.executing_task_id = task_id;
-        String t_name =  TaskTreeHelper.getTaskName(t, task_id);
 
-        TaskProperties task_name = null;
-        if (t_name != null) {
-            for (TaskProperties x : TaskProperties.values()) {
-                if (x.toString().equals(t_name)) {
-                    task_name = x;
-                    break;
-                }
-            }
-        }
+        TaskReference task_name = TaskTreeHelper.getTaskNode(t, task_id).task;
 
         switch (task_name) {
             case RUN_SERIAL :
@@ -58,7 +49,7 @@ public class TaskManagerThread extends Thread {
                 break;
 
             case RUN_SERIAL_LOOP :
-            
+                run_serial_loop(task_id);
                 break;
     
             case RUN_PARALLEL :
@@ -144,7 +135,7 @@ public class TaskManagerThread extends Thread {
     void read_from_file (String task_id) {
         String file_location = TaskTreeHelper.getChildAt(t, task_id, 0).name;
         try {
-            String content = Utils.readFile(file_location);
+            String content = Various.readFile(file_location);
             task_data.setReturn(task_id, ValueType.STRING, content);
         }
         catch (Exception e) {

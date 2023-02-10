@@ -1,9 +1,0 @@
----need to properly organize exceptions
----all tasks should be able to get inside another task!!!!
-    eg. read_from_file does not accept task!!!
-
----implement comment- a comment should start with # at start of sentence
----3 sources of parameter -
-    1. from another task
-    2. its a global variable 
-    3. its a value 
