@@ -62,7 +62,7 @@ public class App {
     }
 
     public static void misc () throws Exception {
-        System.out.println(ModuleNumber.stringToDouble("bbb"));
+        System.out.println(ModuleNumber.stringToDouble("2-200"));
     }
 
     public static void main (String args[]) {

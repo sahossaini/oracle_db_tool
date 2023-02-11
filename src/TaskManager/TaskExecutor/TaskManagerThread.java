@@ -96,12 +96,24 @@ public class TaskManagerThread extends Thread {
                         module_core.pause();
                         break;
                     
-                    case ADD_NUMBERS :
-                        module_number.add_numbers();
+                    case ADD :
+                        module_number.add();
                         break;
 
-                    case SUBSTRACT_NUMBERS :
-                        module_number.substract_numbers();
+                    case SUBSTRACT :
+                        module_number.substract();
+                        break;
+
+                    case MULTIPLY :
+                        module_number.multiply();
+                        break;
+
+                    case DIVIDE :
+                        module_number.divide();
+                        break;
+
+                    case MOD :
+                        module_number.mod();
                         break;
 
                     default:
@@ -134,13 +146,13 @@ public class TaskManagerThread extends Thread {
         if (child.type == TokenType.TASK) {
             execute (child.child_id);
             // if (task_data.checkReturnTaskId().equals(TaskTreeHelper.getParentId(t, currently_running_task_id))) {
-            // System.out.println("x : " + child.child_id + " y : " + task_data.checkReturnTaskId());
-            if (task_data.checkReturnTaskId().equals(child.child_id)
-                || TaskTreeHelper.isParentOfChild(t, child.child_id, task_data.checkReturnTaskId())) {
+            System.out.println("x : " + child.child_id + " y : " + task_data.checkReturnTaskId());
+            // if (task_data.checkReturnTaskId().equals(child.child_id)
+                // || TaskTreeHelper.isParentOfChild(t, child.child_id, task_data.checkReturnTaskId())) {
                 // System.out.println("ret cache--");
                 // task_data.printReturnCache();
                 return task_data.getReturn();
-            }
+            // }
         }
         else if (child.type == TokenType.VARIABLE) {
             ObjectNode object = new ObjectNode();

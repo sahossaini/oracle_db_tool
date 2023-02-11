@@ -23,3 +23,9 @@ the some_condition_task fuction should return true / false based on which
 loop will run or stop 
 
 Then, work on core arithmetic and string manipulation functionalities
+
+
+11-feb-2023
+ALWAYS WRITE TASKS WITH VALIDATORS!!!
+
+add rounding functions!

@@ -71,22 +71,27 @@ public class TaskRefEnums {
                 new TaskProperty(ValueType.VOID, -1, new TokenType[] {TokenType.TASK})
             }
         ),
-        ADD_NUMBERS("ADD_NUMBERS", 
+        ADD("ADD", 
             new TaskProperty[] {
                 new TaskProperty(ValueType.NUMBER, -1, new TokenType[] {TokenType.VARIABLE})
             }
         ),
-        SUBSTRACT_NUMBERS("SUBSTRACT_NUMBERS", 
+        SUBSTRACT("SUBSTRACT", 
             new TaskProperty[] {
                 new TaskProperty(ValueType.NUMBER, -1, new TokenType[] {TokenType.VARIABLE})
             }
         ),
-        MULTIPLY_NUMBERS("MULTIPLY_NUMBERS", 
+        MULTIPLY("MULTIPLY", 
             new TaskProperty[] {
                 new TaskProperty(ValueType.NUMBER, -1, new TokenType[] {TokenType.VARIABLE})
             }
         ),
-        DIVIDE_NUMBERS("DIVIDE_NUMBERS", 
+        DIVIDE("DIVIDE", 
+            new TaskProperty[] {
+                new TaskProperty(ValueType.NUMBER, -1, new TokenType[] {TokenType.VARIABLE})
+            }
+        ),
+        MOD("MOD", 
             new TaskProperty[] {
                 new TaskProperty(ValueType.NUMBER, -1, new TokenType[] {TokenType.VARIABLE})
             }

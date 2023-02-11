@@ -3,6 +3,8 @@ package TaskManager.TaskExecutor.TaskReference;
 import java.util.ArrayList;
 
 import TaskManager.Objects.TaskNode;
+import TaskManager.Objects.TaskProperty;
+import TaskManager.Parser.TaskTreeHelper;
 import TaskManager.TaskExecutor.TaskReference.TaskRefEnums.TaskReference;
 import Utilities.Logger;
 import Utilities.Logger.logType;
@@ -21,8 +23,28 @@ public class TaskValidator {
             }
         }
 
-        
+        /**check number of parameters */
+        for (int i = 0; i < task_tree.size(); i++) {
+            TaskNode task_node = task_tree.get(i);
+            
+            TaskProperty[] task_prop = task_node.task.task_properties;
 
+            boolean paramNumberMatched = false;
+            for (TaskProperty tp : task_prop) { 
+                if (tp.number_of_parameters == -1) {
+                    paramNumberMatched = true; /**apply logic */
+                }
+                else if (tp.number_of_parameters == -2) {
+                    paramNumberMatched = true;
+                }
+                else if (tp.number_of_parameters == task_node.children.size()) {
+                    paramNumberMatched = true;
+                }
+                if (paramNumberMatched) {
+
+                }
+            }
+        }
         return task_tree;
     }
 
@@ -31,6 +53,9 @@ public class TaskValidator {
             case SET_VAR : {
                     break;
                 }
+            case ADD : {
+                break;
+            }
         }
         return false;
     }

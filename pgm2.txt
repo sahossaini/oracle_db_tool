@@ -1,8 +1,5 @@
 run_serial(
-    set_var(
-        add_numbers("100",add_numbers ("10", "20", "1000"), "100", add_numbers("1"))
-        , "sum"
-    ),
-    print(get_var("sum")),
-    print(substract_numbers(get_var("sum"), "2020"))  
+    set_var(divide(multiply(add("10", "20"), substract("50", "10", "5")), "100000"), "result"),
+    print(get_var("result")),
+    print(add(multiply(get_var("result"), "2.5"), "200"))
 )

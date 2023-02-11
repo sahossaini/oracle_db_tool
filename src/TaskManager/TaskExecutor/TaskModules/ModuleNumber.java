@@ -18,7 +18,7 @@ public class ModuleNumber {
         str = str.toLowerCase().trim();
         double value;
         String tmp = "";
-        char[] numbers = {'.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        char[] numbers = {'.', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
         for (int i = 0; i < str.length(); i++) {
             for (char c : numbers) {
                 if (str.charAt(i) == c) {
@@ -37,7 +37,7 @@ public class ModuleNumber {
         return value;
     }
 
-    public void add_numbers () {
+    public void add () {
         Double result = 0.0;
         for (ObjectNode param : task_data.getParameters()) {
             String object_type = TaskManagerData.getObjectType(param.object);
@@ -58,32 +58,95 @@ public class ModuleNumber {
         task_data.setReturn(task_data.executing_task_id, ValueType.NUMBER, result);
     } 
 
-    public void substract_numbers () {
+    public void substract () {
         Double result = 0.0;
-        ObjectNode first_param = task_data.getParameters().get(0);
-        switch (TaskManagerData.getObjectType(first_param.object)) {
-            case "STRING" :
-                result += stringToDouble((String) first_param.object);
-                break;
-
-            case "DOUBLE" :
-                result += (Double) first_param.object;
-                break;
-
-            default :
-                Logger.log(logType.WARNING, "Object type cannot be used!");
-                break;
-        }
-        for (int i = 1; i < task_data.getParameters().size(); i++) {
+        for (int i = 0; i < task_data.getParameters().size(); i++) {
             ObjectNode param = task_data.getParameters().get(i);
             String object_type = TaskManagerData.getObjectType(param.object);
             switch (object_type) {
                 case "STRING" :
-                    result = result - stringToDouble((String) param.object);
+                    if (i == 0)
+                        result = result + stringToDouble((String) param.object);
+                    else result = result - stringToDouble((String) param.object);
                     break;
 
                 case "DOUBLE" :
-                    result = result - (Double) param.object;
+                    if (i == 0)
+                        result = result + (Double) param.object;
+                    else result = result - (Double) param.object;
+                    break;
+
+                default :
+                    Logger.log(logType.WARNING, "Object type cannot be used!");
+                    break;
+            }
+        }
+        task_data.setReturn(task_data.executing_task_id, ValueType.NUMBER, result);
+    } 
+
+    public void multiply () {
+        Double result = 1.0;
+        for (ObjectNode param : task_data.getParameters()) {
+            String object_type = TaskManagerData.getObjectType(param.object);
+            switch (object_type) {
+                case "STRING" :
+                    result *= stringToDouble((String) param.object);
+                    break;
+
+                case "DOUBLE" :
+                    result *= (Double) param.object;
+                    break;
+
+                default :
+                    Logger.log(logType.WARNING, "Object type cannot be used!");
+                    break;
+            }
+        }
+        task_data.setReturn(task_data.executing_task_id, ValueType.NUMBER, result);
+    } 
+
+    public void divide () {
+        Double result = 0.0;
+        for (int i = 0; i < task_data.getParameters().size(); i++) {
+            ObjectNode param = task_data.getParameters().get(i);
+            String object_type = TaskManagerData.getObjectType(param.object);
+            switch (object_type) {
+                case "STRING" :
+                    if (i == 0)
+                        result = result + stringToDouble((String) param.object);
+                    else result = result / stringToDouble((String) param.object);
+                    break;
+
+                case "DOUBLE" :
+                    if (i == 0)
+                        result = result + (Double) param.object;
+                    else result = result / (Double) param.object;
+                    break;
+
+                default :
+                    Logger.log(logType.WARNING, "Object type cannot be used!");
+                    break;
+            }
+        }
+        task_data.setReturn(task_data.executing_task_id, ValueType.NUMBER, result);
+    } 
+
+    public void mod () {
+        Double result = 0.0;
+        for (int i = 0; i < task_data.getParameters().size(); i++) {
+            ObjectNode param = task_data.getParameters().get(i);
+            String object_type = TaskManagerData.getObjectType(param.object);
+            switch (object_type) {
+                case "STRING" :
+                    if (i == 0)
+                        result = result + stringToDouble((String) param.object);
+                    else result = result % stringToDouble((String) param.object);
+                    break;
+
+                case "DOUBLE" :
+                    if (i == 0)
+                        result = result + (Double) param.object;
+                    else result = result % (Double) param.object;
                     break;
 
                 default :
