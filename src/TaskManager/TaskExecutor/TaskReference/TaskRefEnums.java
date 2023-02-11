@@ -20,8 +20,7 @@ public class TaskRefEnums {
             new TaskProperty[] {
                 new TaskProperty(ValueType.STRING, 1, new TokenType[] {TokenType.VARIABLE})
             }
-        )
-        ,
+        ),
         READ_FROM_FILE("READ_FROM_FILE",
             new TaskProperty[] {
                 new TaskProperty(ValueType.STRING, 1, new TokenType[] {TokenType.VARIABLE})
@@ -70,6 +69,11 @@ public class TaskRefEnums {
         RUN_PARALLEL_CONTINUE("RUN_PARALLEL_CONTINUE", 
             new TaskProperty[] {
                 new TaskProperty(ValueType.VOID, -1, new TokenType[] {TokenType.TASK})
+            }
+        ),
+        ADD_NUMBERS("ADD_NUMBERS", 
+            new TaskProperty[] {
+                new TaskProperty(ValueType.NUMBER, -1, new TokenType[] {TokenType.VARIABLE})
             }
         );
 

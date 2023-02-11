@@ -1,13 +1,7 @@
-##RESOLVE double save bug!!!
 run_serial(
-    set_var (
-        "this is the value", 
-        "test_var"
+    set_var(
+        add_numbers("100",add_numbers ("10", "20", "1000"), "100", add_numbers("1"))
+        , "sum"
     ),
-    set_var (
-        "read_from_file",
-        "test_var"
-    ),
-    run_parallel (
-    print (get_var("test_var")))
+    print(add_numbers(get_var("sum"), "2020") )  
 )

@@ -10,6 +10,7 @@ import TaskManager.Parser.TaskInterpreter;
 import TaskManager.Parser.TaskTreeHelper;
 import TaskManager.TaskExecutor.GlobalCacheManager;
 import TaskManager.TaskExecutor.TaskManagerThread;
+import TaskManager.TaskExecutor.TaskModules.ModuleNumber;
 import Utilities.Various;
 
 public class App {
@@ -44,6 +45,7 @@ public class App {
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
+            System.out.println("PARSING ERROR!");
         }
         
         String root_task_id = TaskTreeHelper.getRootTaskId(task_tree);
@@ -59,10 +61,15 @@ public class App {
         x.readExcel("test_sheet.xls");
     }
 
+    public static void misc () throws Exception {
+        System.out.println(ModuleNumber.stringToDouble("bbb"));
+    }
+
     public static void main (String args[]) {
         try {            
             runApp ();
             // excelTest();
+            // misc();
         }
         catch (Exception e) {
             e.printStackTrace();

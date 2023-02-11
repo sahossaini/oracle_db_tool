@@ -1,6 +1,5 @@
 package TaskManager.TaskExecutor.TaskModules;
 
-import java.util.ArrayList;
 
 import TaskManager.Objects.ObjectNode;
 import TaskManager.TaskExecutor.GlobalCacheManager;
@@ -31,6 +30,7 @@ public class ModuleCore {
     }
 
     public void print () {
+        System.out.println("==print > " + task_data.getParameters().size());
         for (ObjectNode n :  task_data.getParameters()) {
             System.out.println("var name : " + n.variable_name);
             System.out.println("task_id  : " + n.task_id);

@@ -3,8 +3,10 @@ package TaskManager.TaskExecutor;
 import java.util.*;
 
 import TaskManager.Objects.*;
+import TaskManager.Parser.TaskTree;
 import TaskManager.Parser.TaskTreeHelper;
 import TaskManager.TaskExecutor.TaskModules.ModuleCore;
+import TaskManager.TaskExecutor.TaskModules.ModuleNumber;
 import TaskManager.TaskExecutor.TaskReference.TaskRefEnums.*;
 import Utilities.Various;
 
@@ -16,6 +18,7 @@ public class TaskManagerThread extends Thread {
     ArrayList<ObjectNode> parameters;
 
     ModuleCore module_core;
+    ModuleNumber module_number;
 
     public TaskManagerThread (String start_task_id, ArrayList<TaskNode> task_tree) {
         t = task_tree;
@@ -23,6 +26,7 @@ public class TaskManagerThread extends Thread {
         this.task_data = new TaskManagerData(start_task_id);
 
         this.module_core = new ModuleCore(task_data);
+        this.module_number = new ModuleNumber(task_data);
     }
     
     public void run ()
@@ -43,6 +47,7 @@ public class TaskManagerThread extends Thread {
 
         TaskReference task_name = TaskTreeHelper.getTaskNode(t, task_id).task;
 
+        // System.out.println("running " + task_id + " :: " + task_name.toString());
         switch (task_name) {
             case RUN_SERIAL :
                 run_serial(task_id);
@@ -90,6 +95,10 @@ public class TaskManagerThread extends Thread {
                     case PAUSE :
                         module_core.pause();
                         break;
+                    
+                    case ADD_NUMBERS :
+                        module_number.add_numbers();
+                        break;
 
                     default:
                         break;
@@ -99,6 +108,8 @@ public class TaskManagerThread extends Thread {
         }
 
         // TaskTreeHelper.printTaskTree(t);
+        // task_data.printReturnCache();
+        // System.out.println("ending " + task_id + " :: " + task_name.toString());
     }
 
     /** crucial function */
@@ -118,7 +129,12 @@ public class TaskManagerThread extends Thread {
     ObjectNode getParamExec (TaskChildNode child) {
         if (child.type == TokenType.TASK) {
             execute (child.child_id);
-            if (task_data.checkReturnTaskId().equals(child.child_id)) {
+            // if (task_data.checkReturnTaskId().equals(TaskTreeHelper.getParentId(t, currently_running_task_id))) {
+            // System.out.println("x : " + child.child_id + " y : " + task_data.checkReturnTaskId());
+            if (task_data.checkReturnTaskId().equals(child.child_id)
+                || TaskTreeHelper.isParentOfChild(t, child.child_id, task_data.checkReturnTaskId())) {
+                // System.out.println("ret cache--");
+                // task_data.printReturnCache();
                 return task_data.getReturn();
             }
         }

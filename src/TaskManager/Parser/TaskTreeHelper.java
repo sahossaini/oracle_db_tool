@@ -5,7 +5,6 @@ import java.util.*;
 import TaskManager.Objects.TaskChildNode;
 import TaskManager.Objects.TaskNode;
 import TaskManager.TaskExecutor.TaskReference.TaskRefEnums.TokenType;
-import javafx.concurrent.Task;
 
 /**
  * TaskTreeHelper
@@ -103,6 +102,19 @@ public class TaskTreeHelper {
         return null;
     }
 
+    public static boolean isParentOfChild (ArrayList<TaskNode> task_tree, String parent_task_id, String child_task_id) {
+        for (TaskNode n : task_tree) {
+            if (n.task_id.equals(parent_task_id)) {
+                for (TaskChildNode c : n.children) {
+                    if (c.child_id.equals(child_task_id)) 
+                        return true;
+                }
+                return false;
+            }
+        }
+        return false;
+    }
+
     public static ArrayList<TaskChildNode> getChildren (ArrayList<TaskNode> task_tree, String task_id) {
         for (TaskNode n : task_tree) {
             if (n.task_id.equals(task_id)) {
@@ -155,6 +167,7 @@ public class TaskTreeHelper {
             if (n.task_id.equals(task_id)) {
                 System.out.println("task_id : " + n.task_id);
                 System.out.println("task_name : " + n.task_name);
+                System.out.println("task_reference : " + n.task);
                 System.out.println("task_status : " + n.task_status);
                 System.out.println("parent_task_id : " + n.parent_task_id);
                 System.out.println("parent_task_name : " + n.parent_task_name);
