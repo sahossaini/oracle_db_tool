@@ -76,6 +76,10 @@ public class TaskManagerData {
         else return null;
     }
 
+    public static String getObjectType (Object object) {
+        return object.getClass().getSimpleName().toUpperCase();
+    } 
+
     public void printReturnCache () {
         System.out.println("var name : " + return_cache.variable_name);
         System.out.println("task_id  : " + return_cache.task_id);

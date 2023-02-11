@@ -100,6 +100,10 @@ public class TaskManagerThread extends Thread {
                         module_number.add_numbers();
                         break;
 
+                    case SUBSTRACT_NUMBERS :
+                        module_number.substract_numbers();
+                        break;
+
                     default:
                         break;
                 }

@@ -3,5 +3,6 @@ run_serial(
         add_numbers("100",add_numbers ("10", "20", "1000"), "100", add_numbers("1"))
         , "sum"
     ),
-    print(add_numbers(get_var("sum"), "2020") )  
+    print(get_var("sum")),
+    print(substract_numbers(get_var("sum"), "2020"))  
 )

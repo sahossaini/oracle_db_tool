@@ -75,6 +75,21 @@ public class TaskRefEnums {
             new TaskProperty[] {
                 new TaskProperty(ValueType.NUMBER, -1, new TokenType[] {TokenType.VARIABLE})
             }
+        ),
+        SUBSTRACT_NUMBERS("SUBSTRACT_NUMBERS", 
+            new TaskProperty[] {
+                new TaskProperty(ValueType.NUMBER, -1, new TokenType[] {TokenType.VARIABLE})
+            }
+        ),
+        MULTIPLY_NUMBERS("MULTIPLY_NUMBERS", 
+            new TaskProperty[] {
+                new TaskProperty(ValueType.NUMBER, -1, new TokenType[] {TokenType.VARIABLE})
+            }
+        ),
+        DIVIDE_NUMBERS("DIVIDE_NUMBERS", 
+            new TaskProperty[] {
+                new TaskProperty(ValueType.NUMBER, -1, new TokenType[] {TokenType.VARIABLE})
+            }
         );
 
         String task_name;

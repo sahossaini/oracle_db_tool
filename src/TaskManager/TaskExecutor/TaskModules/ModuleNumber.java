@@ -40,8 +40,7 @@ public class ModuleNumber {
     public void add_numbers () {
         Double result = 0.0;
         for (ObjectNode param : task_data.getParameters()) {
-            String object_type = param.object.getClass().getSimpleName().toUpperCase();
-            // System.out.println("object type : " + object_type);
+            String object_type = TaskManagerData.getObjectType(param.object);
             switch (object_type) {
                 case "STRING" :
                     result += stringToDouble((String) param.object);
@@ -56,8 +55,42 @@ public class ModuleNumber {
                     break;
             }
         }
-        // System.out.println(result);
         task_data.setReturn(task_data.executing_task_id, ValueType.NUMBER, result);
-        // task_data.printReturnCache();
+    } 
+
+    public void substract_numbers () {
+        Double result = 0.0;
+        ObjectNode first_param = task_data.getParameters().get(0);
+        switch (TaskManagerData.getObjectType(first_param.object)) {
+            case "STRING" :
+                result += stringToDouble((String) first_param.object);
+                break;
+
+            case "DOUBLE" :
+                result += (Double) first_param.object;
+                break;
+
+            default :
+                Logger.log(logType.WARNING, "Object type cannot be used!");
+                break;
+        }
+        for (int i = 1; i < task_data.getParameters().size(); i++) {
+            ObjectNode param = task_data.getParameters().get(i);
+            String object_type = TaskManagerData.getObjectType(param.object);
+            switch (object_type) {
+                case "STRING" :
+                    result = result - stringToDouble((String) param.object);
+                    break;
+
+                case "DOUBLE" :
+                    result = result - (Double) param.object;
+                    break;
+
+                default :
+                    Logger.log(logType.WARNING, "Object type cannot be used!");
+                    break;
+            }
+        }
+        task_data.setReturn(task_data.executing_task_id, ValueType.NUMBER, result);
     } 
 }
