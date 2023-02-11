@@ -1,5 +1,25 @@
-run_serial(
-    set_var(divide(multiply(add("10", "20"), substract("50", "10", "5")), "100000"), "result"),
-    print(get_var("result")),
-    print(add(multiply(get_var("result"), "2.5"), "200"))
+run_serial (
+    run_parallel (
+        set_var (
+            add("30", "20"),
+            "result1"
+        ),
+        set_var (
+            multiply("50", "2"),
+            "result2"
+        ),
+        set_var (
+            add ("150", "150", "200", divide("1500", "3")),
+            "result3"
+        )
+    ),
+    print (
+        multiply(
+            divide (
+                get_var("result2"),
+                get_var("result1")
+            ),
+        get_var("result3")
+        )
+    )
 )

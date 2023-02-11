@@ -29,3 +29,6 @@ Then, work on core arithmetic and string manipulation functionalities
 ALWAYS WRITE TASKS WITH VALIDATORS!!!
 
 add rounding functions!
+
+Make formatting function so that an output 
+    text file is properly formatted to tail!

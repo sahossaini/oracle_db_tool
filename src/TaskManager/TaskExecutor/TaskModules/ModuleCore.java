@@ -29,6 +29,10 @@ public class ModuleCore {
         }
     }
 
+    public void equals () {
+        
+    }
+
     public void print () {
         System.out.println("==print > " + task_data.getParameters().size());
         for (ObjectNode n :  task_data.getParameters()) {
