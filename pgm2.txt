@@ -1,11 +1,11 @@
 run_serial (
     run_parallel (
         set_var (
-            add("30", "20"),
+            add("30", "20", "2511"),
             "result1"
         ),
         set_var (
-            multiply("50", "2"),
+            multiply(add("-2000", "10", "200"), "2"),
             "result2"
         ),
         set_var (

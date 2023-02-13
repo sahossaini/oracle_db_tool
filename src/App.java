@@ -41,7 +41,7 @@ public class App {
 
         ArrayList<TaskNode> task_tree = new ArrayList<TaskNode>();
         try {
-            task_tree = TaskInterpreter.interpret(Various.readFile("pgm2.txt"));
+            task_tree = TaskInterpreter.interpret(Various.readFile("pgm3.txt"));
         }
         catch (Exception e) {
             System.out.println(e.getMessage());

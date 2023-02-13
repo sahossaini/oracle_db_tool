@@ -343,7 +343,7 @@ public class TaskInterpreter {
         t.makeTree(task_text, variables, functions);
 
         t.task_tree = TaskValidator.validateTaskTree(t.task_tree);
-        TaskTreeHelper.printTaskTree(t.task_tree);
+        // TaskTreeHelper.printTaskTree(t.task_tree);
         return t.task_tree;
     }
 

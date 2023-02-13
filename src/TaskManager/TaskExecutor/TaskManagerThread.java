@@ -65,6 +65,10 @@ public class TaskManagerThread extends Thread {
                 run_parallel_continue(task_id);
                 break;
             
+            case IF :
+                if_else(task_id);
+                break;
+            
             default : {
                 task_data.setParameters(getAllParamsExec(task_id));
                 switch (task_name) {
@@ -115,6 +119,10 @@ public class TaskManagerThread extends Thread {
                     case MOD :
                         module_number.mod();
                         break;
+                    
+                    case COMPARE :
+                        module_core.compare();
+                        break;
 
                     default:
                         break;
@@ -146,7 +154,7 @@ public class TaskManagerThread extends Thread {
         if (child.type == TokenType.TASK) {
             execute (child.child_id);
             // if (task_data.checkReturnTaskId().equals(TaskTreeHelper.getParentId(t, currently_running_task_id))) {
-            System.out.println("x : " + child.child_id + " y : " + task_data.checkReturnTaskId());
+            // System.out.println("x : " + child.child_id + " y : " + task_data.checkReturnTaskId());
             // if (task_data.checkReturnTaskId().equals(child.child_id)
                 // || TaskTreeHelper.isParentOfChild(t, child.child_id, task_data.checkReturnTaskId())) {
                 // System.out.println("ret cache--");
@@ -182,8 +190,24 @@ public class TaskManagerThread extends Thread {
     }
 
     void run_serial_loop (String task_id) {
-        for (String child_task_id : TaskTreeHelper.getChildTaskIds(t, task_id)) {
-            execute(child_task_id);
+        boolean end_condition = true;
+        TaskNode task = TaskTreeHelper.getTaskNode(t, task_id);
+        int num_of_children = task.children.size();
+        TaskChildNode child_end_condition = TaskTreeHelper.getChildAt(t, task_id, num_of_children - 1);
+        while (end_condition) {
+            for (int i = 0; i < task.children.size() - 1; i++) {
+                TaskChildNode child = TaskTreeHelper.getChildAt(t, task_id, i);
+                if (child.type == TokenType.TASK) {
+                    execute(child.child_id);
+                }
+            }
+            ObjectNode obj_condition = getParamExec(child_end_condition);
+            if ((Boolean) obj_condition.object) {
+                end_condition = true;
+            }
+            else if (!((Boolean) obj_condition.object)) {
+                end_condition = false;
+            }
         }
     }
 
@@ -222,5 +246,20 @@ public class TaskManagerThread extends Thread {
         for (TaskManagerThread x : threads) {
             x.start();
         }
+    }
+
+    void if_else (String task_id) {
+        TaskChildNode condition = TaskTreeHelper.getChildAt(t, task_id, 0);
+        TaskChildNode if_true = TaskTreeHelper.getChildAt(t, task_id, 1);
+        TaskChildNode if_false = TaskTreeHelper.getChildAt(t, task_id, 2);
+
+        ObjectNode obj_condition = getParamExec(condition);
+        if ((Boolean)obj_condition.object) {
+            execute(if_true.child_id);
+        }
+        else if (!((Boolean)obj_condition.object)) {
+            execute(if_false.child_id);
+        }
+
     }
 }

@@ -1,6 +1,8 @@
 package TaskManager.TaskExecutor.TaskReference;
 
 import TaskManager.Objects.TaskProperty;
+import Utilities.Logger;
+import Utilities.Logger.logType;
 
 public class TaskRefEnums {
     public enum ValueType {
@@ -94,6 +96,16 @@ public class TaskRefEnums {
         MOD("MOD", 
             new TaskProperty[] {
                 new TaskProperty(ValueType.NUMBER, -1, new TokenType[] {TokenType.VARIABLE})
+            }
+        ),
+        COMPARE("COMPARE", 
+            new TaskProperty[] {
+                new TaskProperty(ValueType.NUMBER, -1, new TokenType[] {TokenType.VARIABLE})
+            }
+        ),
+        IF("IF", 
+            new TaskProperty[] {
+                new TaskProperty(ValueType.VOID, -1, new TokenType[] {TokenType.VARIABLE})
             }
         );
 

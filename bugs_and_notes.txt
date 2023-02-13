@@ -32,3 +32,7 @@ add rounding functions!
 
 Make formatting function so that an output 
     text file is properly formatted to tail!
+    check this out - https://github.com/jline/jline3
+
+if (boolfunc(), true(), false())
+switch (val(), match1(), match2())

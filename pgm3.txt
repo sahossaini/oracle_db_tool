@@ -1,0 +1,7 @@
+run_serial (
+set_var("0", "i"),
+run_serial_loop (
+    set_var(add(get_var("i"), "1"), "i"),
+    print(get_var("i")),
+    compare(get_var("i"), "<", "5")
+))

@@ -29,8 +29,57 @@ public class ModuleCore {
         }
     }
 
-    public void equals () {
-        
+    public void compare () {
+        Double param1 = task_data.getParameters().get(0).getNumberFromObject();
+        String operator = (String) task_data.getParameters().get(1).object;
+        Double param2 = task_data.getParameters().get(2).getNumberFromObject();
+        int comparison = Double.compare(param1, param2);
+        Boolean result = null;
+        if (operator.contains("==")) {
+            if (comparison == 0) 
+                result = true;
+            else result = false;
+        }
+        else if (operator.contains("!=") || operator.contains("<>")) {
+            if (comparison == 0) 
+                result = false;
+            else result = true;
+        }
+        else if (operator.contains("<=")) {
+            if (comparison == 0 || comparison == -1) 
+                result = true;
+            else result = false;
+        }
+        else if (operator.contains(">=")) {
+            if (comparison == 0 || comparison == 1) 
+                result = true;
+            else result = false;
+        }
+        else if (operator.contains("<")) {
+            if (comparison == -1) 
+                result = true;
+            else result = false;
+        }
+        else if (operator.contains(">")) {
+            if (comparison == 1) 
+                result = true;
+            else result = false;
+        }
+        if (result != null) {
+            task_data.setReturn(task_data.executing_task_id, ValueType.BOOL, result);
+        }
+    }
+
+    public void if_else () {
+        Boolean condition = (Boolean) task_data.getParameters().get(0).object;
+        if (condition != null) {
+            if (condition) {
+                
+            }
+            else if (!condition) {
+
+            }
+        }
     }
 
     public void print () {
