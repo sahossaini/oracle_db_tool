@@ -13,7 +13,7 @@ public class ModuleString {
 
     public void char_at () {
         String string = (String) task_data.getParameters().get(0).object;
-        int idx = task_data.getParameters().get(1).getNumberFromObject().intValue();
+        int idx = task_data.getPrarameterAt(1).getInt();
 
         string = String.valueOf(string.charAt(idx));
         
@@ -21,7 +21,7 @@ public class ModuleString {
     }
 
     public void length () {
-        String string = (String) task_data.getParameters().get(0).object;
+        String string = task_data.getPrarameterAt(0).getString();
 
         Double length = (double) string.length();
         task_data.setReturn(task_data.executing_task_id, ValueType.NUMBER, length); 

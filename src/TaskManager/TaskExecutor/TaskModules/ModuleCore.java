@@ -31,7 +31,7 @@ public class ModuleCore {
 
     public void set_array () {
         String array_name = (String) task_data.getParameters().get(1).object; 
-        int index = task_data.getParameters().get(2).getNumberFromObject().intValue();
+        int index = task_data.getParameters().get(2).getDouble().intValue();
         ValueType type = task_data.getParameters().get(0).object_type;
         Object cached_object = task_data.getParameters().get(0).object;
         GlobalCacheManager.addToCache(array_name + "-" + index, task_data.executing_task_id, type, cached_object);
@@ -39,7 +39,7 @@ public class ModuleCore {
 
     public void get_array () {
         String array_name = (String) task_data.getParameters().get(0).object;
-        int index = task_data.getParameters().get(1).getNumberFromObject().intValue();
+        int index = task_data.getParameters().get(1).getDouble().intValue();
         ObjectNode object = GlobalCacheManager.getFromCache(array_name + "-" + index);
 
         if (object != null) {
@@ -55,9 +55,9 @@ public class ModuleCore {
     }
 
     public void compare () {
-        Double param1 = task_data.getParameters().get(0).getNumberFromObject();
+        Double param1 = task_data.getParameters().get(0).getDouble();
         String operator = (String) task_data.getParameters().get(1).object;
-        Double param2 = task_data.getParameters().get(2).getNumberFromObject();
+        Double param2 = task_data.getParameters().get(2).getDouble();
         int comparison = Double.compare(param1, param2);
         Boolean result = null;
         if (operator.contains("==")) {

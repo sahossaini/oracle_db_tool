@@ -17,7 +17,7 @@ public class ModuleNumber {
     public void add () {
         Double result = 0.0;
         for (ObjectNode param : task_data.getParameters()) {
-            result += param.getNumberFromObject();
+            result += param.getDouble();
         }
         task_data.setReturn(task_data.executing_task_id, ValueType.NUMBER, result);
     } 
@@ -27,8 +27,8 @@ public class ModuleNumber {
         for (int i = 0; i < task_data.getParameters().size(); i++) {
             ObjectNode param = task_data.getParameters().get(i);
             if (i == 0)
-                result = result + param.getNumberFromObject();
-            else result = result - param.getNumberFromObject();
+                result = result + param.getDouble();
+            else result = result - param.getDouble();
         }
         task_data.setReturn(task_data.executing_task_id, ValueType.NUMBER, result);
     } 
@@ -36,7 +36,7 @@ public class ModuleNumber {
     public void multiply () {
         Double result = 1.0;
         for (ObjectNode param : task_data.getParameters()) {
-            result *= param.getNumberFromObject();
+            result *= param.getDouble();
         }
         task_data.setReturn(task_data.executing_task_id, ValueType.NUMBER, result);
     } 
@@ -46,8 +46,8 @@ public class ModuleNumber {
         for (int i = 0; i < task_data.getParameters().size(); i++) {
             ObjectNode param = task_data.getParameters().get(i);
             if (i == 0)
-                result = result + param.getNumberFromObject();
-            else result = result / param.getNumberFromObject();
+                result = result + param.getDouble();
+            else result = result / param.getDouble();
         }
         task_data.setReturn(task_data.executing_task_id, ValueType.NUMBER, result);
     } 
@@ -57,8 +57,8 @@ public class ModuleNumber {
         for (int i = 0; i < task_data.getParameters().size(); i++) {
             ObjectNode param = task_data.getParameters().get(i);
             if (i == 0)
-                result = result + param.getNumberFromObject();
-            else result = result % param.getNumberFromObject();
+                result = result + param.getDouble();
+            else result = result % param.getDouble();
         }
         task_data.setReturn(task_data.executing_task_id, ValueType.NUMBER, result);
     } 

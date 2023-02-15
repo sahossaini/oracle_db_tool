@@ -25,6 +25,10 @@ public class TaskManagerData {
         }
     }
 
+    public ObjectNode getPrarameterAt (int index) {
+        return parameters.get(index);
+    }
+
     public ArrayList<ObjectNode> getParameters () {
         ArrayList<ObjectNode> params = new ArrayList<ObjectNode>();
         for (ObjectNode obj : parameters) {

@@ -41,13 +41,32 @@ public class ObjectNode {
 
     // implement string to boolean (like 1 is true, True is true etc)
 
-    public Double getNumberFromObject () {
+    public Double getDouble () {
         switch (getObjectType ()) {
             case "STRING" :
                 return stringToDouble((String) object);
 
             case "DOUBLE" :
                 return (Double) object;
+
+            default :
+                Logger.log(logType.WARNING, "Object type cannot be used!");
+                break;
+        }
+        return null;
+    }
+
+    public Integer getInt () {
+        return getDouble().intValue();
+    }
+
+    public String getString () {
+        switch (getObjectType ()) {
+            case "STRING" :
+                return object.toString();
+
+            case "DOUBLE" :
+                return Double.toString((Double) object);
 
             default :
                 Logger.log(logType.WARNING, "Object type cannot be used!");
