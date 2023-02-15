@@ -5,8 +5,8 @@ import Utilities.Logger;
 import Utilities.Logger.logType;
 
 public class TaskRefEnums {
-    public enum ValueType {
-        VOID, ANY, TASK, STRING, DATE, NUMBER, BOOL, TABLE, EXCEL
+    public enum ValueType { ///REMOVE ARRAY TYPE!
+        VOID, ANY, TASK, STRING, DATE, NUMBER, BOOL, TABLE, EXCEL, ARRAY
     }
         
     public enum TaskNodeStatus {
@@ -104,6 +104,31 @@ public class TaskRefEnums {
             }
         ),
         IF("IF", 
+            new TaskProperty[] {
+                new TaskProperty(ValueType.VOID, -1, new TokenType[] {TokenType.VARIABLE})
+            }
+        ),
+        SET_ARRAY("SET_ARRAY", 
+            new TaskProperty[] {
+                new TaskProperty(ValueType.VOID, -1, new TokenType[] {TokenType.VARIABLE})
+            }
+        ),
+        GET_ARRAY("GET_ARRAY", 
+            new TaskProperty[] {
+                new TaskProperty(ValueType.VOID, -1, new TokenType[] {TokenType.VARIABLE})
+            }
+        ),
+        GET_ARRAY_SIZE("GET_ARRAY_SIZE", 
+            new TaskProperty[] {
+                new TaskProperty(ValueType.VOID, -1, new TokenType[] {TokenType.VARIABLE})
+            }
+        ),
+        CHAR_AT("CHAR_AT", 
+            new TaskProperty[] {
+                new TaskProperty(ValueType.VOID, -1, new TokenType[] {TokenType.VARIABLE})
+            }
+        ),
+        LENGTH("LENGTH", 
             new TaskProperty[] {
                 new TaskProperty(ValueType.VOID, -1, new TokenType[] {TokenType.VARIABLE})
             }

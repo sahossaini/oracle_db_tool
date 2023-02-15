@@ -1,7 +1,20 @@
 run_serial (
-set_var("0", "i"),
 run_serial_loop (
-    set_var(add(get_var("i"), "1"), "i"),
-    print(get_var("i")),
-    compare(get_var("i"), "<", "5")
-))
+    set_var(add(get_var("i"), "1"), "i"),    
+#    print(get_var("i")),
+    set_array(get_var("i"), "xxx", get_var("i")),
+#    if (compare(mod(get_var("i"), "2"), "==", "0"), print("even"), print("odd")),
+    compare(get_var("i"), "<", "10")
+),
+print(get_array_size("xxx")),
+set_var("0", "i"),
+print(get_var("i")),
+run_serial_loop (
+    print(
+        get_array("xxx", get_var("i"))
+    ),
+    set_var(
+        add(get_var("i"), "1"), "i"),  
+    compare(get_var("i"), "<=", "15")
+)
+)

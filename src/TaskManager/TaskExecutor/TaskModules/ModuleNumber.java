@@ -13,50 +13,11 @@ public class ModuleNumber {
     public ModuleNumber (TaskManagerData task_data_reference) {
         this.task_data = task_data_reference;
     }
-    
-    public static Double stringToDouble (String str) {
-        str = str.toLowerCase().trim();
-        double value;
-        String tmp = "";
-        char[] numbers = {'.', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-        for (int i = 0; i < str.length(); i++) {
-            for (char c : numbers) {
-                if (str.charAt(i) == c) {
-                    tmp = tmp + c;
-                    break;
-                }
-            }
-        }
-        try {
-            value = Double.parseDouble(tmp);
-        }
-        catch (Exception e) {
-            Logger.log(logType.WARNING, "Failed to parse number - " + str);
-            return null;
-        }
-        return value;
-    }
-
-    public static Double getNumberFromObject (Object object) {
-        String object_type = TaskManagerData.getObjectType(object);
-        switch (object_type) {
-            case "STRING" :
-                return stringToDouble((String) object);
-
-            case "DOUBLE" :
-                return (Double) object;
-
-            default :
-                Logger.log(logType.WARNING, "Object type cannot be used!");
-                break;
-        }
-        return null;
-    }
-
+   
     public void add () {
         Double result = 0.0;
         for (ObjectNode param : task_data.getParameters()) {
-            result += getNumberFromObject(param.object);
+            result += param.getNumberFromObject();
         }
         task_data.setReturn(task_data.executing_task_id, ValueType.NUMBER, result);
     } 
@@ -66,8 +27,8 @@ public class ModuleNumber {
         for (int i = 0; i < task_data.getParameters().size(); i++) {
             ObjectNode param = task_data.getParameters().get(i);
             if (i == 0)
-                result = result + getNumberFromObject(param.object);
-            else result = result - getNumberFromObject(param.object);
+                result = result + param.getNumberFromObject();
+            else result = result - param.getNumberFromObject();
         }
         task_data.setReturn(task_data.executing_task_id, ValueType.NUMBER, result);
     } 
@@ -75,7 +36,7 @@ public class ModuleNumber {
     public void multiply () {
         Double result = 1.0;
         for (ObjectNode param : task_data.getParameters()) {
-            result *= getNumberFromObject(param.object);
+            result *= param.getNumberFromObject();
         }
         task_data.setReturn(task_data.executing_task_id, ValueType.NUMBER, result);
     } 
@@ -85,8 +46,8 @@ public class ModuleNumber {
         for (int i = 0; i < task_data.getParameters().size(); i++) {
             ObjectNode param = task_data.getParameters().get(i);
             if (i == 0)
-                result = result + getNumberFromObject(param.object);
-            else result = result / getNumberFromObject(param.object);
+                result = result + param.getNumberFromObject();
+            else result = result / param.getNumberFromObject();
         }
         task_data.setReturn(task_data.executing_task_id, ValueType.NUMBER, result);
     } 
@@ -96,8 +57,8 @@ public class ModuleNumber {
         for (int i = 0; i < task_data.getParameters().size(); i++) {
             ObjectNode param = task_data.getParameters().get(i);
             if (i == 0)
-                result = result + getNumberFromObject(param.object);
-            else result = result % getNumberFromObject(param.object);
+                result = result + param.getNumberFromObject();
+            else result = result % param.getNumberFromObject();
         }
         task_data.setReturn(task_data.executing_task_id, ValueType.NUMBER, result);
     } 

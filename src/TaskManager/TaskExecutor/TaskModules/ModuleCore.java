@@ -29,6 +29,31 @@ public class ModuleCore {
         }
     }
 
+    public void set_array () {
+        String array_name = (String) task_data.getParameters().get(1).object; 
+        int index = task_data.getParameters().get(2).getNumberFromObject().intValue();
+        ValueType type = task_data.getParameters().get(0).object_type;
+        Object cached_object = task_data.getParameters().get(0).object;
+        GlobalCacheManager.addToCache(array_name + "-" + index, task_data.executing_task_id, type, cached_object);
+    }
+
+    public void get_array () {
+        String array_name = (String) task_data.getParameters().get(0).object;
+        int index = task_data.getParameters().get(1).getNumberFromObject().intValue();
+        ObjectNode object = GlobalCacheManager.getFromCache(array_name + "-" + index);
+
+        if (object != null) {
+            task_data.setReturn(task_data.executing_task_id, object.object_type, object.object);
+        }
+    }
+
+    public void get_array_size () {
+        String array_name = (String) task_data.getParameters().get(0).object;
+        int size = GlobalCacheManager.countNameStartsWith(array_name + "-");
+
+        task_data.setReturn(task_data.executing_task_id, ValueType.NUMBER, Double.valueOf(size));
+    }
+
     public void compare () {
         Double param1 = task_data.getParameters().get(0).getNumberFromObject();
         String operator = (String) task_data.getParameters().get(1).object;
@@ -67,18 +92,6 @@ public class ModuleCore {
         }
         if (result != null) {
             task_data.setReturn(task_data.executing_task_id, ValueType.BOOL, result);
-        }
-    }
-
-    public void if_else () {
-        Boolean condition = (Boolean) task_data.getParameters().get(0).object;
-        if (condition != null) {
-            if (condition) {
-                
-            }
-            else if (!condition) {
-
-            }
         }
     }
 

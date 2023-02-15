@@ -7,6 +7,7 @@ import TaskManager.Parser.TaskTree;
 import TaskManager.Parser.TaskTreeHelper;
 import TaskManager.TaskExecutor.TaskModules.ModuleCore;
 import TaskManager.TaskExecutor.TaskModules.ModuleNumber;
+import TaskManager.TaskExecutor.TaskModules.ModuleString;
 import TaskManager.TaskExecutor.TaskReference.TaskRefEnums.*;
 import Utilities.Various;
 
@@ -19,6 +20,7 @@ public class TaskManagerThread extends Thread {
 
     ModuleCore module_core;
     ModuleNumber module_number;
+    ModuleString module_string;
 
     public TaskManagerThread (String start_task_id, ArrayList<TaskNode> task_tree) {
         t = task_tree;
@@ -27,6 +29,7 @@ public class TaskManagerThread extends Thread {
 
         this.module_core = new ModuleCore(task_data);
         this.module_number = new ModuleNumber(task_data);
+        this.module_string = new ModuleString(task_data);
     }
     
     public void run ()
@@ -122,6 +125,26 @@ public class TaskManagerThread extends Thread {
                     
                     case COMPARE :
                         module_core.compare();
+                        break;
+                    
+                    case SET_ARRAY :
+                        module_core.set_array();
+                        break;
+                    
+                    case GET_ARRAY :
+                        module_core.get_array();
+                        break;
+                    
+                    case GET_ARRAY_SIZE :
+                        module_core.get_array_size();
+                        break;
+
+                    case CHAR_AT :
+                        module_string.char_at();
+                        break;
+                        
+                    case LENGTH :
+                        module_string.length();
                         break;
 
                     default:

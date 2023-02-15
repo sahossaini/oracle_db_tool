@@ -22,6 +22,16 @@ public class GlobalCacheManager {
         return -1;
     }
 
+    public static int countNameStartsWith (String name) {
+        int count = 0;
+        for (int i = 0; i < cache.size(); i++) {
+            if (cache.get(i).variable_name.startsWith(name)) {
+                count ++;
+            }
+        }
+        return count;
+    }
+
     public static ObjectNode getFromCache (String name) {
         int idx = getIdx(name);
         if (idx != -1) {

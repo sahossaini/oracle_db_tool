@@ -36,3 +36,11 @@ Make formatting function so that an output
 
 if (boolfunc(), true(), false())
 switch (val(), match1(), match2())
+
+resolve bugs related to loop, if etc.
+implement bool type inherently!
+
+compare function for strings and bools and other types!!!
+
+types should be of types -
+    string, number, bool, table

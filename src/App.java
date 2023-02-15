@@ -41,7 +41,7 @@ public class App {
 
         ArrayList<TaskNode> task_tree = new ArrayList<TaskNode>();
         try {
-            task_tree = TaskInterpreter.interpret(Various.readFile("pgm3.txt"));
+            task_tree = TaskInterpreter.interpret(Various.readFile("pgm.txt"));
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
@@ -62,7 +62,7 @@ public class App {
     }
 
     public static void misc () throws Exception {
-        System.out.println(ModuleNumber.stringToDouble("2-200"));
+        // System.out.println(ModuleNumber.stringToDouble("2-200"));
     }
 
     public static void main (String args[]) {

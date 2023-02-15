@@ -1,5 +1,5 @@
 run_serial (
     print(
-        read_from_file ("bugs_notes.txt")
+        length("samiul")
     )
 )
